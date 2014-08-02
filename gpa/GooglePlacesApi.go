@@ -94,7 +94,6 @@ func (tsr *TextSearchRequest) BuildUrlForQuery(path string) {
 	v.Set("query", url.QueryEscape(queryPar))
 	v.Set("key", url.QueryEscape(tsr.ApiKey))
 	u.RawQuery = v.Encode()
-	// fmt.Println(u.String())
 	tsr.Url = u.String()
 }
 
@@ -125,7 +124,7 @@ func (tsr *TextSearchRequest) Query(qrfj *QueryResult) (string, error) {
 
 	// Store data in it's type
 	body, err := ioutil.ReadAll(res.Body)
-	fmt.Println(tsr.ResponseType)
+
 	if tsr.ResponseType == "json" {
 		json.Unmarshal(body, qrfj)
 	} else if tsr.ResponseType == "xml" {
